@@ -1,0 +1,90 @@
+//CONSTRUTOR
+
+package com.conta;
+
+public class Conta {
+
+	private String nome;
+	private double saldo;
+	protected double deposito;
+	protected double saque;
+	
+	public Conta(String n) {
+		nome = n;
+		saldo = 100;
+		
+	}
+	
+	public void setNome(String n) {
+		nome = n;
+		
+	}
+	
+	public String getNome() {
+		return nome;
+	}
+	
+	public void setSaldo(double valor) {
+		saldo = valor;
+		
+	}
+	
+	public double getSaldo() {
+		return saldo;
+		
+	}
+	
+	public void depositar(double valor) {
+		saldo += valor;
+		
+	}
+	
+	public void sacar(double valor) {
+		saldo -= valor;
+	}
+	
+}
+
+
+//CÓDIGO
+
+package com.conta;
+
+import java.util.Scanner;
+
+import javax.swing.JOptionPane;
+
+public class UsoConta {
+
+	public static void main(String[] args) {
+		
+		Scanner input = new Scanner(System.in);
+		String nomeInicial = "";
+		double deposito, saque;		
+		
+		
+		JOptionPane.showMessageDialog(null, "Bem vindo ao Banco SOL", "Boas Vindas", JOptionPane.INFORMATION_MESSAGE);
+		
+		nomeInicial = JOptionPane.showInputDialog(null, "Informe o nome do titular: ");
+		
+		JOptionPane.showMessageDialog(null, "O nome do usuário é " + nomeInicial, "Banco SOL", JOptionPane.INFORMATION_MESSAGE);
+		Conta primeiraConta = new Conta(nomeInicial);
+		
+		JOptionPane.showMessageDialog(null, "Seu saldo atual é: " + primeiraConta.getSaldo(), "Banco SOL", JOptionPane.INFORMATION_MESSAGE);
+		
+		deposito = Double.parseDouble(JOptionPane.showInputDialog(null, "Insira o valor a ser depositado à sua conta: "));				
+		primeiraConta.depositar(deposito);
+		JOptionPane.showMessageDialog(null, "Seu saldo atual é: " + primeiraConta.getSaldo(), "Banco SOL", JOptionPane.INFORMATION_MESSAGE);
+		
+		saque = Double.parseDouble(JOptionPane.showInputDialog(null, "Insira o valor a ser sacado da conta: "));
+		
+		if (primeiraConta.getSaldo() >= saque) {
+			primeiraConta.sacar(saque);
+			JOptionPane.showMessageDialog(null, "Seu saldo atual é: " + primeiraConta.getSaldo(), "Banco SOL", JOptionPane.INFORMATION_MESSAGE);
+				
+		}
+		
+		else {
+			JOptionPane.showMessageDialog(null, "Você não possui saldo suficiente para realizar esse saque!" , "Banco SOL", JOptionPane.INFORMATION_MESSAGE);
+			
+		}
